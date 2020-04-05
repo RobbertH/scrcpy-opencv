@@ -1,4 +1,4 @@
-# scrcpy-for-games
+# scrcpy-opencv
 [Scrcpy](https://github.com/Genymobile/scrcpy) is a tool that streams your android screen to your computer, and allows you to send mouse or keyboard input back to the android device.
 This repository modifies scrcpy to also send back automatically generated input by passing the frame on to the OpenCV computer vision library.
 
