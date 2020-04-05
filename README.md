@@ -10,6 +10,7 @@ Lastly, an input tap is sent back to the android device, in the center of that c
 
 The main modifications to scrcpy include:
 * Modifying the meson config files to compile both scrcpy (C) and the additional functions (C++) that depend on OpenCV (C++).
+* Converting the scrcpy image format to one that OpenCV can understand.
 * Writing the additional functions to use OpenCV and send input to the android device.
 
 Since most work done was part of "making it work" rather than writing the actual code, I figured this might help other people in achieving similar goals.
