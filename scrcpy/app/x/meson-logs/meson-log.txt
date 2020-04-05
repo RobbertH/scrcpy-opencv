@@ -1,0 +1,10 @@
+Build started at 2020-03-29T19:34:57.833964
+Main binary: /usr/bin/python3
+Python system: Linux
+The Meson build system
+Version: 0.51.2
+Source dir: /home/robbert/Desktop/soccer-gamer/scrcpy/app
+Build dir: /home/robbert/Desktop/soccer-gamer/scrcpy/app/x
+Build type: native build
+
+ERROR: First statement must be a call to project
