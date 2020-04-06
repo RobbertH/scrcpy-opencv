@@ -16,3 +16,9 @@ The main modifications to scrcpy include:
 Since most work done was part of "making it work" rather than writing the actual code, I figured this might help other people in achieving similar goals.
 The concrete case of the soccer game is just one example of what can be achieved with this powerful tool:
 any OpenCV function can be run to produce input to the android device, based on the frames.
+
+# Future work
+* Clean up code. It's currently a scratchpad.
+* Use [a better conversion](https://sourcey.com/articles/ffmpeg-avpacket-to-opencv-mat-converter) from AVFrame to Mat. The current conversion does outputs three times the same thing (color channels?).
+* Trajectory prediction to tap more accurately. (Fit observations to parabolic curve).
+
