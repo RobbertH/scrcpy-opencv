@@ -30,6 +30,7 @@ if not get_option('crossbuild_windows')
     dependencies = [
         dependency('libavformat'),
         dependency('libavcodec'),
+        dependency('libswscale'),
         dependency('libavutil'),
         dependency('sdl2'),
         dependency('opencv4'),
