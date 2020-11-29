@@ -2,6 +2,12 @@
 [Scrcpy](https://github.com/Genymobile/scrcpy) is a tool that streams your android screen to your computer, and allows you to send mouse or keyboard input back to the android device.
 This repository modifies scrcpy to also send back automatically generated input by passing the frame on to the OpenCV computer vision library.
 
+# Video
+[Youtube link](https://www.youtube.com/watch?v=4Ikzw7TttuU)
+
+# Blog post
+[Blog post link](https://robberthofman.com/projects/2020/03/30/hacking-scrcpy-to-win-fb-soccer-game/)
+
 # Background and context
 I wanted to win a soccer game on android, where you have to tap a ball to keep it in the air.
 To do so, the 'AVFrame' used in scrcpy is converted to an OpenCV 'mat' so that OpenCV's image processing functions can be run on it.
