@@ -32,6 +32,18 @@ to run the modified scrcpy.
 
 Also make sure your android phone is plugged in over USB and has `adb` enabled.
 
+# Making changes
+When making changes, make sure to run `meson reconfigure` and rebuild using `ninja -Cx`. Alternatively, you could delete the `x` directory and run the commands above again.
+
+The files that this repository changes versus the original scrcpy repository are the following:
+* added: `app/src/opencv_injection.cpp`  This is where all new code is written. It is recommended that you alter this file.
+* added: `app/src/opencv_injection.hpp`
+* modified: `app/src/scrcpy.c`  Defines a method that can send a tap to the phone (used in opencv_injection.cpp)
+* modified: `app/src/scrcpy.h`
+* modified: `app/src/screen.c`  This is where the 'hook' is that sends the AVFrame to the opencv_injection function
+* modified: `app/meson.build`  to add dependencies and source files to be compiled
+* modified: `meson.build`  to enable C++ compilation instead of only C
+
 # Background and context
 I wanted to win a soccer game on android, where you have to tap a ball to keep it in the air.
 To do so, the 'AVFrame' used in scrcpy is converted to an OpenCV 'mat' so that OpenCV's image processing functions can be run on it.
@@ -48,4 +60,4 @@ The concrete case of the soccer game is just one example of what can be achieved
 any OpenCV function can be run to produce input to the android device, based on the frames.
 
 If you want to read more, there is a [blog post](https://robberthofman.com/projects/2020/03/30/hacking-scrcpy-to-win-fb-soccer-game/).
-
+For questions, simply open an issue.
