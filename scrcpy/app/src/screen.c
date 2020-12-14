@@ -298,7 +298,7 @@ update_texture(struct screen *screen, const AVFrame *frame) {
             frame->data[0], frame->linesize[0],
             frame->data[1], frame->linesize[1],
             frame->data[2], frame->linesize[2]);
-	opencv_injection(screen, frame);
+	opencv_injection(frame);
 }
 
 bool

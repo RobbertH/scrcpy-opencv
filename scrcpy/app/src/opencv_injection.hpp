@@ -2,11 +2,15 @@
 #include "screen.h"
 
 #ifdef __cplusplus
+
+#include <opencv2/opencv.hpp> // cv:Mat
+
+void extract_circle_and_tap(cv::Mat src);  // define C++ function outside of extern "C"
+
 extern "C" {
 #endif
 
-	void opencv_injection(struct screen *screen, AVFrame *frame);
-	void opencv_injection_send_tap(SDL_TouchFingerEvent event);
+	void opencv_injection(AVFrame *frame);  // used in screen.c
 
 #ifdef __cplusplus
 }

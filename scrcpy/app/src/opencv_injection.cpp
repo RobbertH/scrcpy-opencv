@@ -13,25 +13,23 @@ extern "C" {
 	#include <libavcodec/avcodec.h>
 	#include <libavutil/imgutils.h> // av_image_fill_arrays
 	#include <libswscale/swscale.h>
+	#include "scrcpy.h"  // opencv_send_tap(SDL_TouchFingerEvent event) as defined in scrcpy.c
 }
 
-#include "scrcpy.h"
 
 #define DRAW_CIRCLES false  // Set to true only for debugging. Slows everything down heavily.
-#define DEBUG_MESSAGES_ENABLED false
+#define DEBUG_MESSAGES_ENABLED true
 
 using namespace cv;
 using namespace std;
 
-void extract_circle_and_tap(Mat src);
-
 int nb_frame = 0;
 
 /*
- * Receives an AVFrame and converts it to an OpenCV Mat.
- * Then calls further processing of that OpenCV Mat.
+ * opencv_injection receives an AVFrame and converts it to an OpenCV Mat.
+ * It then calls further processing of that OpenCV Mat.
  * */
-void opencv_injection(struct screen *screen, AVFrame *frame) {
+void opencv_injection(AVFrame *frame) {
 	if (DEBUG_MESSAGES_ENABLED) {
 		LOGI("OpenCV injection function called");
 	}
@@ -68,12 +66,17 @@ void opencv_injection(struct screen *screen, AVFrame *frame) {
 
 }
 
+
+/*
+ * extract_circle_and_tap extracts a circle using the OpenCV HoughCircles method,
+ * then sends a tap at a well chosen location.
+ */
+
 // Previous ball position
 float previous_x = 0.5;
 float previous_y = 0.9;
 float speed_x;
 float speed_y;
-
 
 void extract_circle_and_tap(Mat src) {
 	if (DEBUG_MESSAGES_ENABLED) {
@@ -122,10 +125,10 @@ void extract_circle_and_tap(Mat src) {
 			circle( src, center, radius, Scalar(255,0,255), 3, LINE_AA);
 		}
 
-		double opencv_mat_width = 270;
-		double opencv_mat_height = 554;
+		double opencv_mat_width = src.size().width;
+		double opencv_mat_height = src.size().height;
 
-		float timedelta = 5;  // how much into the future we want to predict
+		float timedelta = 6;  // how much into the future we want to predict
 		event.x = (c[0]+speed_x*timedelta)/opencv_mat_width;
 		// int vertical_offset = 40;  // y axis starts at top. Add if you want to tap lower. 
 		event.y = (c[1]+speed_y*timedelta)/opencv_mat_height;
@@ -143,7 +146,7 @@ void extract_circle_and_tap(Mat src) {
 	// Actual tap
 	if (event.y > 0.2) {  // Don't tap the uppermost pixels, to avoid the ball going out of frame. Y axis starts at top.
 		if (DEBUG_MESSAGES_ENABLED) {
-			LOGI("Tapping at  %f %f ", event.x , event.y);
+			LOGI("extract_circle_and_tap: Tapping at  %f %f ", event.x , event.y);
 		}
 		event.type = SDL_FINGERDOWN;
 		opencv_injection_send_tap(event);
