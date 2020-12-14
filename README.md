@@ -13,7 +13,7 @@ Save the directory of the prebuilt server in an environment variable, we'll need
 Change directory to the desktop part of the project, called `scrcpy`,  
 `cd scrcpy`  
 then run the following command, making sure you replace the directory to the one where the `prebuilt` folder resides  
-`meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=$PREBUILT_SERVER_PATH/scrcpy-server-v1.12.1`
+`meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=$PREBUILT_SERVER_PATH/scrcpy-server-v1.12.1`  
 to configure the build, and then  
 `ninja -Cx`  
 to build the application, so you can finally  
