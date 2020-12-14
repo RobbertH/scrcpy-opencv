@@ -3,6 +3,8 @@
 This project modifies scrcpy to also send back automatically generated input by passing the frame on to the OpenCV computer vision library.
 To see scrcpy-opencv in action, check out this [Youtube video](https://www.youtube.com/watch?v=4Ikzw7TttuU)!
 
+![detected_circle.png](detected_circle.png)
+
 # Run it yourself
 Install [dependencies to build scrcpy](https://github.com/Genymobile/scrcpy/blob/master/BUILD.md):  
 runtime dependencies  
@@ -47,5 +49,3 @@ any OpenCV function can be run to produce input to the android device, based on 
 
 If you want to read more, there is a [blog post](https://robberthofman.com/projects/2020/03/30/hacking-scrcpy-to-win-fb-soccer-game/).
 
-# Detected circle screenshot
-![detected_circle.png](detected_circle.png)
