@@ -4,6 +4,14 @@ This project modifies scrcpy to also send back automatically generated input by 
 To see scrcpy-opencv in action, check out this [Youtube video](https://www.youtube.com/watch?v=4Ikzw7TttuU)!
 
 # Run it yourself
+Install [dependencies to build scrcpy](https://github.com/Genymobile/scrcpy/blob/master/BUILD.md):  
+runtime dependencies  
+`sudo apt install ffmpeg libsdl2-2.0-0 adb`  
+client build dependencies  
+`sudo apt install gcc git pkg-config meson ninja-build libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev`  
+server build dependencies  
+`sudo apt install openjdk-8-jdk`  
+
 Clone this repository:  
 `git clone https://github.com/RobbertH/scrcpy-opencv.git`  
 Go into the folder you just cloned:  
@@ -12,7 +20,7 @@ Save the directory of the prebuilt server in an environment variable, we'll need
 `PREBUILT_SERVER_PATH=$PWD/prebuilt`  
 Change directory to the desktop part of the project, called `scrcpy`,  
 `cd scrcpy`  
-then run the following command, making sure you replace the directory to the one where the `prebuilt` folder resides  
+then run the following command, making sure $PREBUILT_SERVER_PATH contains the prebuilt scrcpy server:    
 `meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=$PREBUILT_SERVER_PATH/scrcpy-server-v1.12.1`  
 to configure the build, and then  
 `ninja -Cx`  
