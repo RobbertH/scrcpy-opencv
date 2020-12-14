@@ -60,7 +60,7 @@ struct scrcpy_options {
     .window_borderless = false, \
 }
 
-void robbert_send_tap(SDL_TouchFingerEvent event);
+void opencv_injection_send_tap(SDL_TouchFingerEvent event);
 
 bool
 scrcpy(const struct scrcpy_options *options);

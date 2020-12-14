@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-	void robbert_func(struct screen *screen, AVFrame *frame);
-	void robbert_send_tap(SDL_TouchFingerEvent event);
+	void opencv_injection(struct screen *screen, AVFrame *frame);
+	void opencv_injection_send_tap(SDL_TouchFingerEvent event);
 
 #ifdef __cplusplus
 }

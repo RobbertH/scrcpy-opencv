@@ -11,7 +11,7 @@ src = [
     'src/file_handler.c',
     'src/fps_counter.c',
     'src/input_manager.c',
-	'src/robbert.cpp',
+	'src/opencv_injection.cpp',
     'src/receiver.c',
     'src/recorder.c',
     'src/scrcpy.c',

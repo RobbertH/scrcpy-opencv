@@ -45,8 +45,7 @@ static struct input_manager input_manager = {
     .prefer_text = false, // initialized later
 };
 
-void robbert_send_tap(SDL_TouchFingerEvent event) {
-	LOGI("YEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+void opencv_injection_send_tap(SDL_TouchFingerEvent event) {
 	input_manager_process_touch(&input_manager, &event);
 	return;
 }

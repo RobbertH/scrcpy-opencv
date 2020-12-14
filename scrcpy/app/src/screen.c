@@ -13,7 +13,7 @@
 #include "util/lock.h"
 #include "util/log.h"
 
-#include "robbert.hpp"
+#include "opencv_injection.hpp"
 
 #define DISPLAY_MARGINS 96
 
@@ -298,7 +298,7 @@ update_texture(struct screen *screen, const AVFrame *frame) {
             frame->data[0], frame->linesize[0],
             frame->data[1], frame->linesize[1],
             frame->data[2], frame->linesize[2]);
-	robbert_func(screen, frame);
+	opencv_injection(screen, frame);
 }
 
 bool
