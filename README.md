@@ -1,12 +1,26 @@
 # scrcpy-opencv
 [Scrcpy](https://github.com/Genymobile/scrcpy) is a tool that streams your android screen to your computer, and allows you to send mouse or keyboard input back to the android device.
-This repository modifies scrcpy to also send back automatically generated input by passing the frame on to the OpenCV computer vision library.
+This project modifies scrcpy to also send back automatically generated input by passing the frame on to the OpenCV computer vision library.
+To see scrcpy-opencv in action, check out this [Youtube video](https://www.youtube.com/watch?v=4Ikzw7TttuU)!
 
-# Video
-[Youtube link](https://www.youtube.com/watch?v=4Ikzw7TttuU)
+# Run it yourself
+Clone this repository:  
+`git clone https://github.com/RobbertH/scrcpy-opencv.git`  
+Go into the folder you just cloned:  
+`cd scrcpy-opencv`  
+Save the directory of the prebuilt server in an environment variable, we'll need this later:  
+`PREBUILT_SERVER_PATH=$PWD/prebuilt`  
+Change directory to the desktop part of the project, called `scrcpy`,  
+`cd scrcpy`  
+then run the following command, making sure you replace the directory to the one where the `prebuilt` folder resides  
+`meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=$PREBUILT_SERVER_PATH/scrcpy-server-v1.12.1`
+to configure the build, and then  
+`ninja -Cx`  
+to build the application, so you can finally  
+`./run x`  
+to run the modified scrcpy.
 
-# Blog post
-[Blog post link](https://robberthofman.com/projects/2020/03/30/hacking-scrcpy-to-win-fb-soccer-game/)
+Also make sure your android phone is plugged in over USB and has `adb` enabled.
 
 # Background and context
 I wanted to win a soccer game on android, where you have to tap a ball to keep it in the air.
@@ -23,8 +37,7 @@ Since most work done was part of "making it work" rather than writing the actual
 The concrete case of the soccer game is just one example of what can be achieved with this powerful tool:
 any OpenCV function can be run to produce input to the android device, based on the frames.
 
-# Future work
-* Clean up code. It's currently a scratchpad.
-* Use [a better conversion](https://sourcey.com/articles/ffmpeg-avpacket-to-opencv-mat-converter) from AVFrame to Mat. The current conversion does outputs three times the same thing (color channels?).
-* Trajectory prediction to tap more accurately. (Fit observations to parabolic curve).
+If you want to read more, there is a [blog post](https://robberthofman.com/projects/2020/03/30/hacking-scrcpy-to-win-fb-soccer-game/).
 
+# Detected circle screenshot
+![detected_circle.png](detected_circle.png)
