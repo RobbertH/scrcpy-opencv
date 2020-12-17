@@ -46,7 +46,8 @@ If the `meson` step above fails because of OpenCV, you can install it as follows
 `cmake -D OPENCV_GENERATE_PKGCONFIG=ON -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..`  
 `make -j3`  
 `sudo make install`  
-`pkg-config --cflags --libs opencv4`
+`pkg-config --cflags --libs opencv4`  
+`sudo ldconfig -v` to refresh dynamic linker run-time bindings
 
 After this, meson should find opencv4 and you're good to go.
 
