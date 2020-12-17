@@ -6,6 +6,7 @@ To see scrcpy-opencv in action, check out this [Youtube video](https://www.youtu
 ![detected_circle.png](detected_circle.png)
 
 # Run it yourself
+## Building scrcpy
 Install [dependencies to build scrcpy](https://github.com/Genymobile/scrcpy/blob/master/BUILD.md):  
 runtime dependencies  
 `sudo apt install ffmpeg libsdl2-2.0-0 adb`  
@@ -13,6 +14,9 @@ client build dependencies
 `sudo apt install gcc git pkg-config meson ninja-build libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev`  
 server build dependencies  
 `sudo apt install openjdk-8-jdk`  
+
+Some more dependencies you might not have installed:  
+`sudo apt install g++ cmake libswscale-dev `  
 
 Clone this repository:  
 `git clone https://github.com/RobbertH/scrcpy-opencv.git`  
@@ -31,6 +35,20 @@ to build the application, so you can finally
 to run the modified scrcpy.
 
 Also make sure your android phone is plugged in over USB and has `adb` enabled.
+
+## Building OpenCV
+If the `meson` step above fails because of OpenCV, you can install it as follows. It's a slight variation on [the OpenCV tutorial](https://docs.opencv.org/4.5.0/d0/d3d/tutorial_general_install.html).  
+`wget https://github.com/opencv/opencv/archive/4.4.0.zip`  
+`unzip 4.4.0.zip`  
+`cd opencv-4.4.0`  
+`mkdir build`  
+`cd build`  
+`cmake -D OPENCV_GENERATE_PKGCONFIG=ON -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..`  
+`make -j3`  
+`sudo make install`  
+`pkg-config --cflags --libs opencv4`
+
+After this, meson should find opencv4 and you're good to go.
 
 # Making changes
 When making changes, make sure to run `meson reconfigure` and rebuild using `ninja -Cx`. Alternatively, you could delete the `x` directory and run the commands above again.
